@@ -6,20 +6,17 @@ public class BattleShipMain {
 		String reponse;
 		Scanner sc = new Scanner(System.in);
 		do {
-			System.out.printf("Début du jeu : Jouer contre un ordinateur ? (o/n) : %nQuitter (q)%n ");
+			System.out.printf("Are you ready for the game  ? (o/n) :  ");
 			reponse = sc.nextLine();
 		} while (!reponse.toString().equals("o") && !reponse.toString().equals("O")
-				&& !reponse.toString().equals("n") && !reponse.toString().equals("N")
-				&& !reponse.toString().equals("q") && !reponse.toString().equals("Q"));
-		if(reponse.toString().equals("q") || reponse.toString().equals("Q")) {
+				&& !reponse.toString().equals("n") && !reponse.toString().equals("N"));
+		if(reponse.toString().equals("n") || reponse.toString().equals("N")) {
 			System.out.println("Au revoir !");
 			return;
 		}
-		if(reponse.toString().equals("o") || reponse.toString().equals("O")) {
-			//Start game
-		}
 		else {
-			//Start game contre joueur
+			Grid grid = new Grid();
+			grid.displayGrid();
 		}
 	}
 }
