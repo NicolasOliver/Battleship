@@ -22,17 +22,19 @@ public class IHM
 		System.out.println("Entrer x");
 		String input=System.console().readLine();
 		int x=Integer.parseInt(input);
+		
 		System.out.println("Entrer y");
 		input=System.console().readLine();
 		int y=Integer.parseInt(input);
+		
 		return new Point(x,y);	
 	}
 	
-	public static char getOrientation()
+	public static String getOrientation()
 	{
 			System.out.println("Entrer l orientation, v pour vertical, h pour horizontal");
 			String input=System.console().readLine();
-			return input.charAt(0);
+			return input;
 	}
 	
 	public static void ShipCollision()

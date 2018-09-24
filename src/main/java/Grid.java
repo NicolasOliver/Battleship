@@ -64,16 +64,16 @@ public class Grid {
 	}
 	
 	//Verifier que le bateau rentre bien dans la grille
-	public Boolean checkSize(Ship ship,Point point,char orientation)
+	public Boolean checkSize(Ship ship,Point point,String orientation)
 	{
 		int ship_size=ship.getSize();
 		Boolean result=true;
-		if(orientation=='v')
+		if(orientation=="v")
 		{
 			if((point.x+ship_size)>SIZE)
 				result=false;
 		}
-		if(orientation=='h')
+		if(orientation=="h")
 		{
 			if((point.y+ship_size)>SIZE)
 				result=false;
@@ -88,7 +88,7 @@ public class Grid {
 		do
 		{
 			Point point=IHM.getCoordonnnees();
-			char orientation=IHM.getOrientation();
+			String orientation=IHM.getOrientation();
 			if(checkSize(ship,point,orientation))
 			{
 				if(checkCollisions(ship))

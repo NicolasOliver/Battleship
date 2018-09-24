@@ -1,12 +1,17 @@
 import java.awt.Point;
+import java.util.ArrayList;
 
 public class SousMarin extends Ship 
 {
-	private final static int taille=3;
-	private final static int firing_range=4;
-	private final static String name="Sous-marin";
 	
-	public SousMarin() {
-		super(name, taille, firing_range);
+	public SousMarin(String orintation, Point begin) {
+		this.name = "SousMarin";
+		this.size = 3;
+		this.firingRange = 4;
+		this.orientation = orintation;
+		this.begin = begin;
+		this.life = 2;
+		this.affectedCases = new ArrayList<Point>();
+		this.cases = new ArrayList<Point>();
 	}
 }
