@@ -1,6 +1,5 @@
 
 public class Player {
-	private int lives = 2;
 	private int id;
 	Grid grid;
 	
@@ -8,7 +7,4 @@ public class Player {
 		return id;
 	}
 	
-	public int getLife() {
-		return lives;
-	}
 }
