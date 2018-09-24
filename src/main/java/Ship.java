@@ -14,13 +14,23 @@ public class Ship {
 	private Point begin; // Première case du bâteau
 	
 	// Constructeur d'un bâteau comprenant son nom, sa taille, son portée de tir et son orientation
-	public Ship(String name, int size, int firingRange, char orientation) {
+	public Ship(String name, int size, int firingRange, char orientation,Point begin) {
 		this.name = name;
 		this.size = size;
 		this.firingRange = firingRange;
 		this.orientation = orientation;
+		this.begin=begin;
 		life = 2;
-		cases = new ArrayList<Point>();
+		affectedCases = new ArrayList<Point>();
+		cases=new ArrayList<Point>();
+	}
+	
+	public Ship(String name, int size, int firingRange) {
+		this.name = name;
+		this.size = size;
+		this.firingRange = firingRange;
+		life = 2;
+		cases=new ArrayList<Point>();
 		affectedCases = new ArrayList<Point>();
 	}
 	
@@ -43,5 +53,33 @@ public class Ship {
         }
         System.out.println();
     }
+	
+	//Definir les cases occuppees par le bateau
+	public void setCases(Point begin,char orientation)
+	{
+		this.begin=begin;
+		this.orientation=orientation;
+		cases.add(begin);
+		for(int i=1;i<cases.size();i++)
+		{
+			Point previous=cases.get(i-1);
+			if(orientation=='h')
+			{
+				Point point=new Point(previous.x+1,previous.y);
+				cases.add(point);
+			}
+			else if(orientation=='v')
+			{
+				Point point=new Point(previous.x,previous.y+1);
+				cases.add(point);
+			}
+		}
+	}
+	
+	
+	public ArrayList<Point> getCases() {
+		return cases;
+	}
+	
 	
 }
