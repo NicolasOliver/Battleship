@@ -84,7 +84,7 @@ public class Grid {
 	
 	public void placeShip(Ship ship)
 	{
-		IHM.
+		IHM.PlacementBateau(ship.getName());
 		do
 		{
 			Point point=IHM.getCoordonnnees();
