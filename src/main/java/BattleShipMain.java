@@ -8,9 +8,9 @@ public class BattleShipMain {
 		do {
 			System.out.printf("Are you ready for the game  ? (o/n) :  ");
 			reponse = sc.nextLine();
-		} while (!reponse.toString().equals("o") && !reponse.toString().equals("O")
-				&& !reponse.toString().equals("n") && !reponse.toString().equals("N"));
-		if(reponse.toString().equals("n") || reponse.toString().equals("N")) {
+		} while (!"o".equals(reponse.toString()) && !"O".equals(reponse.toString())
+				&& !"n".equals(reponse.toString()) && !"N".equals(reponse.toString()));
+		if("n".equals(reponse.toString()) || "N".equals(reponse.toString())) {
 			System.out.println("Au revoir !");
 			return;
 		}
