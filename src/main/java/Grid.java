@@ -1,12 +1,12 @@
 import java.awt.Point;
 import java.util.ArrayList;
 
-// Défini le plateau de jeu
+// Dï¿½fini le plateau de jeu
 public class Grid {
 	
 	public static final int SIZE=10;
 	
-	private ArrayList<Point> ocuupiedPoints;
+	private ArrayList<Point> ocupiedPoints;
 	private char[] coord = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
 	private char sea = '#';
 	private char ship = 'o';
@@ -17,7 +17,7 @@ public class Grid {
 	
 	public Grid() {
 		grid = new char[10][10];
-		
+		ocupiedPoints=new ArrayList<Point>();
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				grid[j][i] = sea;
@@ -32,7 +32,7 @@ public class Grid {
 			if(i==0) System.out.print("\t" + (i) + "  ");
 			else System.out.print((i) + "  ");
 		}
-		// Reviens à la ligne
+		// Reviens ï¿½ la ligne
 		System.out.println("\n");
 		
 		for (int i = 0; i < 10; i++) {
@@ -54,13 +54,13 @@ public class Grid {
 		ArrayList<Point> pointsBateau=ship.getCases();
 		for(Point p:pointsBateau)
 		{
-			for(Point pb:pointsBateau)
+			for(Point pb:ocupiedPoints)
 			{
 				if(p.equals(pb))
-					return true;
+					return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	//Verifier que le bateau rentre bien dans la grille
@@ -91,10 +91,10 @@ public class Grid {
 			char orientation=IHM.getOrientation();
 			if(checkSize(ship,point,orientation))
 			{
+				ship.setCases(point, orientation);
 				if(checkCollisions(ship))
 				{
-					ship.setCases(point, orientation);
-					this.ocuupiedPoints.addAll(ship.getCases());
+					this.ocupiedPoints.addAll(ship.getCases());
 					return;
 				}
 				else

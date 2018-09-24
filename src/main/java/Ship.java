@@ -3,17 +3,17 @@ import java.util.ArrayList;
 
 public class Ship {
 	
-	// On déclare les différents paramètres pour chaque bâteau
-	private int firingRange; // Sa portée de tir
-	private int size; // La taille du bâteau
-	private String name; // Le nom de bâteau
-	private int life; // Le nombre de vie d'un bâteau
+	// On dï¿½clare les diffï¿½rents paramï¿½tres pour chaque bï¿½teau
+	private int firingRange; // Sa portï¿½e de tir
+	private int size; // La taille du bï¿½teau
+	private String name; // Le nom de bï¿½teau
+	private int life; // Le nombre de vie d'un bï¿½teau
 	private char orientation; // v si vertical h si horizontal
-	private ArrayList<Point> cases; // Ensemble des points du bâteau
-	private ArrayList<Point> affectedCases; // Ensemble des points endommagés du bâteau;
-	private Point begin; // Première case du bâteau
+	private ArrayList<Point> cases; // Ensemble des points du bï¿½teau
+	private ArrayList<Point> affectedCases; // Ensemble des points endommagï¿½s du bï¿½teau;
+	private Point begin; // Premiï¿½re case du bï¿½teau
 	
-	// Constructeur d'un bâteau comprenant son nom, sa taille, son portée de tir et son orientation
+	// Constructeur d'un bï¿½teau comprenant son nom, sa taille, son portï¿½e de tir et son orientation
 	public Ship(String name, int size, int firingRange, char orientation,Point begin) {
 		this.name = name;
 		this.size = size;
@@ -42,13 +42,13 @@ public class Ship {
 	public char getOrientation() { return orientation; }
 	public Point getBegin() { return begin; }
 	
-	// Pour gérer quand un bâteau est touché
+	// Pour gï¿½rer quand un bï¿½teau est touchï¿½
 	public void hit(Point point) {
-    	affectedCases.add(point); // Pour ne pas toucher 2 fois de suite au même endroit
+    	affectedCases.add(point); // Pour ne pas toucher 2 fois de suite au mï¿½me endroit
         life--;
-        System.out.print("Touché ! C'était un " + name);
+        System.out.print("Touchï¿½ ! C'ï¿½tait un " + name);
         if(life == 0) {
-            System.out.print("qui est d'ailleur coulé !");
+            System.out.print("qui est d'ailleur coulï¿½ !");
             return;
         }
         System.out.println();
@@ -60,7 +60,7 @@ public class Ship {
 		this.begin=begin;
 		this.orientation=orientation;
 		cases.add(begin);
-		for(int i=1;i<cases.size();i++)
+		for(int i=1;i<this.size;i++)
 		{
 			Point previous=cases.get(i-1);
 			if(orientation=='h')
@@ -74,6 +74,7 @@ public class Ship {
 				cases.add(point);
 			}
 		}
+		int a =0;
 	}
 	
 	

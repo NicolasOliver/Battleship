@@ -1,5 +1,9 @@
-// Défini le lancement et l'arrêt d'une partie
+// Dï¿½fini le lancement et l'arrï¿½t d'une partie
 public class Game {
-	
+	public static void main(String args[])
+	{
+		Player player=new Player(1);
+		player.placeShips();
+	}
 	
 }

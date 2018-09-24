@@ -9,3 +9,4 @@ public class ContreTorpilleur extends Ship
 	public ContreTorpilleur() {
 		super(name, taille, firing_range);
 	}
+}

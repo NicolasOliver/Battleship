@@ -1,5 +1,6 @@
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class IHM
 {
@@ -7,7 +8,7 @@ public class IHM
 	
 	public static int selectShip(ArrayList<String> ship_names)
 	{
-		System.out.println("Selctionner un bateau");
+		System.out.println("Selectionner un bateau");
 		for(int i=0;i<ship_names.size();i++)
 		{
 			System.out.println(i+1+"-"+ship_names.get(i));
@@ -19,19 +20,22 @@ public class IHM
 	
 	public static Point getCoordonnnees()
 	{
+		Scanner sc=new Scanner(System.in);
 		System.out.println("Entrer x");
-		String input=System.console().readLine();
+		String input=sc.nextLine();
 		int x=Integer.parseInt(input);
 		System.out.println("Entrer y");
-		input=System.console().readLine();
+		input=sc.nextLine();
 		int y=Integer.parseInt(input);
 		return new Point(x,y);	
+		//TODO verifier inputs
 	}
 	
 	public static char getOrientation()
 	{
+			Scanner sc=new Scanner(System.in);
 			System.out.println("Entrer l orientation, v pour vertical, h pour horizontal");
-			String input=System.console().readLine();
+			String input=sc.nextLine();
 			return input.charAt(0);
 	}
 	
@@ -42,7 +46,7 @@ public class IHM
 	
 	public static void WallCollision()
 	{
-		System.out.println("Un bateau se trouve deja a cet emplacement");
+		System.out.println("Bateau en dehors des limites");
 	}
 	
 	public static void PlacementBateau(String nom)

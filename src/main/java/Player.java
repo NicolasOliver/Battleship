@@ -13,6 +13,7 @@ public class Player {
 	{
 		this.id=id;
 		ships=new ArrayList<Ship>();
+		grid=new Grid();
 	}
 	
 	public int getId() {
@@ -47,7 +48,7 @@ public class Player {
 	
 	private Ship selectShip()
 	{
-		ArrayList<String> ship_names=new ArrayList<String>;
+		ArrayList<String> ship_names=new ArrayList<String>();
 		for(int i=0;i<ships.size();i++)
 		{
 			ship_names.add(ships.get(i).getName());
