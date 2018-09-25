@@ -1,12 +1,17 @@
 import java.awt.Point;
+import java.util.ArrayList;
 
 public class Torpilleur extends Ship 
 {
-	private final static int taille=2;
-	private final static int firing_range=5;
-	private final static String name="Torpilleur";
 	
-	public Torpilleur() {
-		super(name, taille, firing_range);
+	public Torpilleur(String orintation, Point begin) {
+		this.name = "Torpilleur";
+		this.size = 2;
+		this.firingRange = 5;
+		this.orientation = orintation;
+		this.begin = begin;
+		this.life = 2;
+		this.affectedCases = new ArrayList<Point>();
+		this.cases = new ArrayList<Point>();
 	}
 }

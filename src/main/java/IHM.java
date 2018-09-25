@@ -24,14 +24,16 @@ public class IHM
 		System.out.println("Entrer x");
 		String input=sc.nextLine();
 		int x=Integer.parseInt(input);
+		
 		System.out.println("Entrer y");
 		input=sc.nextLine();
 		int y=Integer.parseInt(input);
+		
 		return new Point(x,y);	
 		//TODO verifier inputs
 	}
 	
-	public static char getOrientation()
+	public static String getOrientation()
 	{
 			Scanner sc=new Scanner(System.in);
 			System.out.println("Entrer l orientation, v pour vertical, h pour horizontal");
