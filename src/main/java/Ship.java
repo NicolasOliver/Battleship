@@ -3,17 +3,17 @@ import java.util.ArrayList;
 
 public class Ship {
 	
-	// On d�clare les diff�rents param�tres pour chaque b�teau
-	protected int firingRange; // Sa port�e de tir
-	protected int size; // La taille du b�teau
-	protected String name; // Le nom de b�teau
-	protected int life; // Le nombre de vie d'un b�teau
+	// On declare les differents parametres pour chaque  bateau
+	protected int firingRange; // Sa portee de tir
+	protected int size; // La taille du bateau
+	protected String name; // Le nom de bateau
+	protected int life; // Le nombre de vie d'un bateau
 	protected String orientation; // v si vertical h si horizontal
-	protected ArrayList<Point> cases; // Ensemble des points du b�teau
-	protected ArrayList<Point> affectedCases; // Ensemble des points endommag�s du b�teau;
-	protected Point begin; // Premi�re case du b�teau
+	protected ArrayList<Point> cases; // Ensemble des points du bateau
+	protected ArrayList<Point> affectedCases; // Ensemble des points endommages du bateau;
+	protected Point begin; // Premiere case du bateau
 	
-	// Constructeur d'un b�teau comprenant son nom, sa taille, son port�e de tir et son orientation
+	// Constructeur d'un bateau comprenant son nom, sa taille, son portee de tir et son orientation
 	public Ship(){}
 	
 	// Getters
@@ -24,13 +24,13 @@ public class Ship {
 	public String getOrientation() { return orientation; }
 	public Point getBegin() { return begin; }
 	
-	// Pour g�rer quand un b�teau est touch�
+	// Pour gerer quand un bateau est touche
 	public void hit(Point point) {
-    	affectedCases.add(point); // Pour ne pas toucher 2 fois de suite au m�me endroit
+    	affectedCases.add(point); // Pour ne pas toucher 2 fois de suite au meme endroit
         life--;
-        System.out.println("Touch� ! C'�tait un " + name);
+        System.out.println("Touche ! C'etait un " + name);
         if(life == 0) {
-            System.out.println("Qui est d'ailleur coul� !");
+            System.out.println("Qui est d'ailleurs coule !");
             return;
         }
         System.out.println();
@@ -56,7 +56,6 @@ public class Ship {
 				cases.add(point);	
 			}
 		}
-		System.out.println("initialized");
 	}
 	
 	

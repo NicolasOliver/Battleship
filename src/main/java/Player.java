@@ -54,7 +54,7 @@ public class Player {
 		ships.add(ship);
 		grid.displayGrid();
 		
-		System.out.println("Les bateaux ont �t� plac�s");
+		System.out.println("Les bateaux ont ete places");
 	}
 	
 	private void takeShot()

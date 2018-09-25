@@ -1,19 +1,19 @@
 import java.util.Scanner;
 
-// D�fini le lancement et l'arr�t d'une partie 
+// Defini le lancement et l'arret d'une partie 
 //Singleton
 public class Game {
 	Player joueur1;
 	Player joueur2;
 	
-	/* Constructeur priv� */
+	/* Constructeur prive*/
 	private Game(){
 	}
 	
-	/** Instance unique pr�-initialis�e */
+	/** Instance unique pre-initialisee*/
     private static Game INSTANCE = new Game();
     
-    /** Point d'acc�s pour l'instance unique du singleton */
+    /** Point d'acces pour l'instance unique du singleton */
     public static Game getInstance()
     {           
         if (INSTANCE == null){
@@ -22,6 +22,7 @@ public class Game {
         return INSTANCE;
     }
     
+    // Lancement du jeu
     public void lancementDuJeux() {
     	String reponse;
 		Scanner sc = new Scanner(System.in);
@@ -31,31 +32,32 @@ public class Game {
 		} while (!"o".equals(reponse.toString()) && !"O".equals(reponse.toString())
 				&& !"n".equals(reponse.toString()) && !"N".equals(reponse.toString()));
 		if("n".equals(reponse.toString()) || "N".equals(reponse.toString())) {
-			System.out.println("Au revoir !");
+			System.out.println("See you !");
 			return;
 		}
 		else {
 			joueur1 = new Player(1);
 			joueur2 = new Player(2);
-			placementBateau();
-			
+			placementBateau();	
 		}
     }
     
+    // Initialisation de la position des bâteaux
     public void placementBateau () {
-    	System.out.println("\nLe joueur 1 doit placer ses bateaux\n");
+    	System.out.println("\nLe joueur 1 doit placer ses bateaux : \n");
     	joueur1.placeShips();
-    	System.out.println("Le joueur 2 doit placer ses bateaux");
+    	System.out.println("Le joueur 2 doit placer ses bateaux : ");
     	joueur2.placeShips();
     	
     	batailleNavale();
     }
     
+    // Gère la partie
     public void batailleNavale(){
     	while (!joueur1.getShips().isEmpty() && !joueur2.getShips().isEmpty()){
-    		System.out.println("Au tour du joueur 1");
+    		System.out.println("Au tour du joueur 1 : ");
     		tireJoueur(joueur1);
-    		System.out.println("Au tour du joueur 2");
+    		System.out.println("Au tour du joueur 2 : ");
     		tireJoueur(joueur2);
     	}
     	
@@ -66,6 +68,7 @@ public class Game {
     	}
     }
     
+    // Classe qui gère les tirs du joueur
     public void tireJoueur(Player player){
     	Boolean succes = true;
 		player.setShipChosen(player.selectShip());

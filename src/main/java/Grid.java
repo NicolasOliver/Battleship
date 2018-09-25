@@ -47,7 +47,7 @@ public class Grid {
 		//TODO
 		for(Point p:ocupiedPoints)
 		{
-			grid[p.y-1][p.x-1]=ship;
+			grid[p.y][p.x]=ship;
 		}
 	}
 	
