@@ -27,7 +27,7 @@ public class Player {
 	{
 		Point point = new Point(0,0);
 		Grid grid = new Grid();
-		
+		grid.displayGrid();
 		Ship ship=new PorteAvion("v", point);
 		grid.placeShip(ship);
 		ships.add(ship);

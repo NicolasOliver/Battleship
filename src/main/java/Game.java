@@ -8,8 +8,6 @@ public class Game {
 	
 	/* Constructeur priv� */
 	private Game(){
-		joueur1 = new Player(1);
-		joueur2 = new Player(1);
 	}
 	
 	/** Instance unique pr�-initialis�e */
@@ -34,20 +32,18 @@ public class Game {
 				&& !"n".equals(reponse.toString()) && !"N".equals(reponse.toString()));
 		if("n".equals(reponse.toString()) || "N".equals(reponse.toString())) {
 			System.out.println("Au revoir !");
-			sc.close();
 			return;
 		}
 		else {
-			sc.close();
-			Grid grid = new Grid();
-			grid.displayGrid();
+			joueur1 = new Player(1);
+			joueur2 = new Player(2);
 			placementBateau();
 			
 		}
     }
     
     public void placementBateau () {
-    	System.out.println("Le joueur 1 doit placer ses bateaux");
+    	System.out.println("\nLe joueur 1 doit placer ses bateaux\n");
     	joueur1.placeShips();
     	System.out.println("Le joueur 2 doit placer ses bateaux");
     	joueur2.placeShips();
@@ -80,10 +76,4 @@ public class Game {
 			} */
     }
     
-    public static void main(String args[])
-    {
-    	Player player=new Player(1);
-    	player.placeShips();
-    	
-    }
 }

@@ -22,8 +22,6 @@ public class Grid {
 				grid[i][j] = sea;
 			}
 		}
-		
-		System.out.println("\nVoici la grille de jeu ! \n");
 	}
 	
 	public void displayGrid() {
@@ -51,7 +49,6 @@ public class Grid {
 		{
 			grid[p.y-1][p.x-1]=ship;
 		}
-		System.out.println("updated display");
 	}
 	
 	public Boolean checkCollisions(Ship ship)
