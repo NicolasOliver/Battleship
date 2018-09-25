@@ -38,7 +38,7 @@ public class IHM
 			Scanner sc=new Scanner(System.in);
 			System.out.println("Entrer l orientation, v pour vertical, h pour horizontal");
 			String input=sc.nextLine();
-			return input.charAt(0);
+			return input;
 	}
 	
 	public static void ShipCollision()

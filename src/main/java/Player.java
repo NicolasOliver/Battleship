@@ -6,21 +6,21 @@ public class Player {
 	
 	private final String CHOIXBATEAU="Choisir un bateau\n1-Porte Avion\n2-Croiseur\n3-Contre torpilleur\n4-Sous-marin\n5-Torpilleur";
 	
-	//private int id;
+	private int id;
 	private Grid grid;
 	private ArrayList<Ship> ships;
 	private Ship shipChosen;
 	
-	/*public Player(int id)
+	public Player(int id)
 	{
 		this.id=id;
 		ships=new ArrayList<Ship>();
 		grid=new Grid();
 	}
 	
-	/*public int getId() {
+	public int getId() {
 		return id;
-	}*/
+	}
 	
 	//Methode pour placer les bateaux
 	public void placeShips() 
@@ -31,26 +31,28 @@ public class Player {
 		Ship ship=new PorteAvion("v", point);
 		grid.placeShip(ship);
 		ships.add(ship);
+		grid.displayGrid();
 		
 		
 		ship=new Croiseur("v", point);
 		grid.placeShip(ship);
 		ships.add(ship);
-		
+		grid.displayGrid();
 	
 		ship=new ContreTorpilleur("v", point);
 		grid.placeShip(ship);
 		ships.add(ship);
-		
+		grid.displayGrid();
 		
 		ship=new SousMarin("v", point);
 		grid.placeShip(ship);
 		ships.add(ship);
-		
+		grid.displayGrid();
 		
 		ship=new Torpilleur("v", point);
 		grid.placeShip(ship);
 		ships.add(ship);
+		grid.displayGrid();
 		
 		System.out.println("Les bateaux ont �t� plac�s");
 	}

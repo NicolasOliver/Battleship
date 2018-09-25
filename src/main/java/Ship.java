@@ -45,18 +45,18 @@ public class Ship {
 		for(int i=1;i<this.size;i++)
 		{
 			Point previous=cases.get(i-1);
-			if(orientation=="h")
-			{
-				Point point=new Point(previous.x+1,previous.y);
-				cases.add(point);
-			}
-			else if(orientation=="v")
+			if("v".equals(orientation))
 			{
 				Point point=new Point(previous.x,previous.y+1);
 				cases.add(point);
 			}
+			else if("h".equals(orientation))
+			{
+				Point point=new Point(previous.x+1,previous.y);
+				cases.add(point);	
+			}
 		}
-		int a =0;
+		System.out.println("initialized");
 	}
 	
 	

@@ -7,7 +7,6 @@ public class Grid {
 	public static final int SIZE=10;
 	
 	private ArrayList<Point> ocupiedPoints;
-	private char[] coord = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
 	private char sea = '#';
 	private char ship = 'o';
 	private char hit = 'X';
@@ -20,7 +19,7 @@ public class Grid {
 		ocupiedPoints=new ArrayList<Point>();
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				grid[j][i] = sea;
+				grid[i][j] = sea;
 			}
 		}
 		
@@ -28,6 +27,7 @@ public class Grid {
 	}
 	
 	public void displayGrid() {
+		updateDisplay();
 		for (int i = 0; i < 10; i++) {
 			if(i==0) System.out.print("\t" + (i) + "  ");
 			else System.out.print((i) + "  ");
@@ -36,7 +36,7 @@ public class Grid {
 		System.out.println("\n");
 		
 		for (int i = 0; i < 10; i++) {
-			System.out.print(coord[i] + "\t");
+			System.out.print(i + "\t");
 			for (int j = 0; j < 10; j++) {
 				System.out.print(grid[i][j] + "  ");
 			}
@@ -47,6 +47,11 @@ public class Grid {
 	
 	public void updateDisplay() {
 		//TODO
+		for(Point p:ocupiedPoints)
+		{
+			grid[p.y-1][p.x-1]=ship;
+		}
+		System.out.println("updated display");
 	}
 	
 	public Boolean checkCollisions(Ship ship)
@@ -68,12 +73,12 @@ public class Grid {
 	{
 		int ship_size=ship.getSize();
 		Boolean result=true;
-		if(orientation=="v")
+		if("h".equals(orientation))
 		{
 			if((point.x+ship_size)>SIZE)
 				result=false;
 		}
-		if(orientation=="h")
+		if("v".equals(orientation))
 		{
 			if((point.y+ship_size)>SIZE)
 				result=false;

@@ -8,8 +8,8 @@ public class Game {
 	
 	/* Constructeur priv� */
 	private Game(){
-		joueur1 = new Player();
-		joueur2 = new Player();
+		joueur1 = new Player(1);
+		joueur2 = new Player(1);
 	}
 	
 	/** Instance unique pr�-initialis�e */
@@ -80,4 +80,10 @@ public class Game {
 			} */
     }
     
+    public static void main(String args[])
+    {
+    	Player player=new Player(1);
+    	player.placeShips();
+    	
+    }
 }
