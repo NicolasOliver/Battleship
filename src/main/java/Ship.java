@@ -39,6 +39,7 @@ public class Ship {
 	//Definir les cases occuppees par le bateau
 	public void setCases(Point begin,String orientation)
 	{
+		cases=new ArrayList<Point>();
 		this.begin=begin;
 		this.orientation=orientation;
 		cases.add(begin);

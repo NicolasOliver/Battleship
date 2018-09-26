@@ -78,5 +78,9 @@ public class Game {
 			System.out.println("Vous avez rat� votre cible")
 			} */
     }
-    
+    public static void main(String[] args)
+    {
+    	Player player=new Player(1);
+    	player.placeShips();
+    }
 }
