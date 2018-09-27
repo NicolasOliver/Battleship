@@ -1,16 +1,16 @@
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Player {
 	
-	private final String CHOIXBATEAU="Choisir un bateau\n1-Porte Avion\n2-Croiseur\n3-Contre torpilleur\n4-Sous-marin\n5-Torpilleur";
+	private final String CHOIXBATEAU="Choisir un bateau : \n1-Porte Avion\n2-Croiseur\n3-Contre torpilleur\n4-Sous-marin\n5-Torpilleur";
 	
-	private int id;
-	private Grid grid;
-	private ArrayList<Ship> ships;
-	private Ship shipChosen;
+	private int id; // Chaque joueur est indentifie
+	private Grid grid; // Chaque joueur possede une grille de jeu
+	private ArrayList<Ship> ships; // Chaque joueur possede une liste de ses bateaux
+	private Ship shipChosen; // Pour savoir quel bateau est choisi
 	
+	// Constructeur
 	public Player(int id)
 	{
 		this.id=id;
@@ -18,11 +18,12 @@ public class Player {
 		grid=new Grid();
 	}
 	
+	// Getter
 	public int getId() {
 		return id;
 	}
 	
-	//Methode pour placer les bateaux
+	// Methode pour placer les bateaux
 	public void placeShips() 
 	{
 		Point point = new Point(0,0);
@@ -57,27 +58,24 @@ public class Player {
 		System.out.println("Les bateaux ont ete places");
 	}
 	
-	private void takeShot()
-	{
-		Ship s=selectShip();
-		
-	}
-	
+	// gere le tir
+	@SuppressWarnings("unused")
 	public Boolean shot(Point point, Player tireur, Player cible){
-		Boolean flag = false;
 		for (int i = 0;i<cible.getShips().size();i++){
 			for (int j = 0;j<cible.getShips().get(i).getCases().size();j++){
 				if (point.equals(cible.getShips().get(i).getCases().get(j))){
 					cible.getShips().get(i).affectedCases.add(point); 
 					cible.getShips().get(i).getCases().remove(j);
 					cible.getShips().get(i).setLife(cible.getShips().get(i).getLife()-1);
-					System.out.println("Vous avez touché votre cible");
+					System.out.println("Vous avez touché votre cible !\n");
+					cible.getGrid().setHitPoints(point);
 					if(cible.getShips().get(i).getLife()==0){
 						cible.getShips().remove(i);
 					}
 					return true;
 				}  else {
-					System.out.println("Vous avez raté votre cible");
+					System.out.println("Vous avez rate votre cible..\n");
+					cible.getGrid().setMissedPoints(point);
 					placeShipsAtfterShoot(tireur.getShipChosen());
 					return false;
 				}
@@ -86,13 +84,15 @@ public class Player {
 		return false;
 	}
 	
+	// Permet de replacer un bateau
 	public void placeShipsAtfterShoot(Ship bateau) 
 	{
-		System.out.println("Vous pouvez replacé votre bateau");
+		System.out.println("Vous pouvez replacer votre bateau");
 		grid.placeShip(bateau,true);
-		System.out.println("Le bateaux a ete replacé");
+		System.out.println("Le bateaux a ete replace");
 	}
 	
+	// Choisir un bateau pour tirer
 	public Ship selectShip()
 	{
 		ArrayList<String> ship_names=new ArrayList<String>();
@@ -105,6 +105,7 @@ public class Player {
 		return ships.get(i);
 	}
 
+	/** Getters and setters */
 	public Grid getGrid() {
 		return grid;
 	}
@@ -132,7 +133,5 @@ public class Player {
 	public void setShipChosen(Ship shipChosen) {
 		this.shipChosen = shipChosen;
 	}
-	
-	
-	
+
 }

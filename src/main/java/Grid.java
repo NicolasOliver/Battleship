@@ -7,16 +7,21 @@ public class Grid {
 	public static final int SIZE=10;
 	
 	private ArrayList<Point> ocupiedPoints;
-	private char sea = '#';
-	private char ship = 'o';
-	private char hit = 'X';
-	private char miss = 'm';
+	private ArrayList<Point> hitPoints;
+	private ArrayList<Point> missedPoints;
+	private char sea = '#'; // caractere pour la mer
+	private char ship = 'o'; // caractere pour un bateau
+	private char hit = 'X'; // caractere pour un bateau touche
+	private char miss = 'm'; // caractere pour une case manquee (sans bateau)
 	
 	private char[][] grid;
 	
+	// Initialise la grille d'un joueur
 	public Grid() {
 		grid = new char[10][10];
 		ocupiedPoints=new ArrayList<Point>();
+		hitPoints=new ArrayList<Point>();
+		missedPoints=new ArrayList<Point>();
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				grid[i][j] = sea;
@@ -24,13 +29,14 @@ public class Grid {
 		}
 	}
 	
+	// Affiche la grille du joueur
 	public void displayGrid() {
 		updateDisplay();
 		for (int i = 0; i < 10; i++) {
 			if(i==0) System.out.print("\t" + (i) + "  ");
 			else System.out.print((i) + "  ");
 		}
-		// Reviens � la ligne
+		// Reviens a la ligne
 		System.out.println("\n");
 		
 		for (int i = 0; i < 10; i++) {
@@ -43,14 +49,23 @@ public class Grid {
 		System.out.println();
 	}
 	
+	// Mets à jour les symboles de la grille
 	public void updateDisplay() {
-		//TODO
 		for(Point p:ocupiedPoints)
 		{
 			grid[p.y][p.x]=ship;
 		}
+		for(Point p:hitPoints)
+		{
+			grid[p.y][p.x]=hit;
+		}
+		for(Point p:missedPoints)
+		{
+			grid[p.y][p.x]=miss;
+		}
 	}
 	
+	// check les collisions
 	public Boolean checkCollisions(Ship ship)
 	{
 		ArrayList<Point> pointsBateau=ship.getCases();
@@ -84,6 +99,7 @@ public class Grid {
 		
 	}
 	
+	// Placement des bateaux
 	public void placeShip(Ship ship,Boolean flag)
 	{
 		IHM.PlacementBateau(ship.getName());
@@ -127,5 +143,11 @@ public class Grid {
 		while(drap);
 	}
 	
+	public void setHitPoints(Point point) {
+		this.hitPoints.add(point);
+	}
 	
+	public void setMissedPoints(Point point) {
+		this.hitPoints.add(point);
+	}
 }

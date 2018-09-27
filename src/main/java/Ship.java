@@ -25,8 +25,6 @@ public class Ship {
 	public String getOrientation() { return orientation; }
 	public Point getBegin() { return begin; }
 	
-	
-	
 	public ArrayList<Point> getAffectedCases() {
 		return affectedCases;
 	}
@@ -98,10 +96,8 @@ public class Ship {
 		}
 	}
 	
-	
 	public ArrayList<Point> getCases() {
 		return cases;
 	}
-	
 	
 }

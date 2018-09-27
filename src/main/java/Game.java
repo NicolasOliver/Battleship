@@ -24,7 +24,8 @@ public class Game {
     }
     
     // Lancement du jeu
-    public void lancementDuJeux() {
+    @SuppressWarnings("resource")
+	public void lancementDuJeux() {
     	String reponse;
 		Scanner sc = new Scanner(System.in);
 		do {
@@ -47,7 +48,7 @@ public class Game {
     public void placementBateau () {
     	System.out.println("\nLe joueur 1 doit placer ses bateaux : \n");
     	joueur1.placeShips();
-    	System.out.println("Le joueur 2 doit placer ses bateaux : ");
+    	System.out.println("\nLe joueur 2 doit placer ses bateaux : \n");
     	joueur2.placeShips();
     	
     	batailleNavale();
@@ -56,9 +57,13 @@ public class Game {
     // Gère la partie
     public void batailleNavale(){
     	while (!joueur1.getShips().isEmpty() && !joueur2.getShips().isEmpty()){
-    		System.out.println("Au tour du joueur 1 : ");
+    		System.out.println("\nAu tour du joueur 1 : \n");
+    		System.out.println("Voici votre grille :\n");
+    		joueur1.getGrid().displayGrid();
     		tireJoueur(joueur1, joueur2);
-    		System.out.println("Au tour du joueur 2 : ");
+    		System.out.println("\nAu tour du joueur 2 : \n");
+    		System.out.println("Voici votre grille :\n");
+    		joueur2.getGrid().displayGrid();
     		tireJoueur(joueur2, joueur1);
     	}
     	
@@ -74,14 +79,9 @@ public class Game {
     	Boolean succes = true;
 		do {
 			tireur.setShipChosen(tireur.selectShip());
-			System.out.println("La portée du "+tireur.getShipChosen().getName()+" est de :"+tireur.getShipChosen().getFiringRange());
+			System.out.println("La portée du "+tireur.getShipChosen().getName()+" est de : "+tireur.getShipChosen().getFiringRange());
 			Point point = IHM.getCoordonnneesTire(tireur);
 			succes = joueur1.shot(point,tireur, cible);
 		} while (succes);
-    }
-    public static void main(String[] args)
-    {
-    	Player player=new Player(1);
-    	player.placeShips();
     }
 }

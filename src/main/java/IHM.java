@@ -6,19 +6,30 @@ public class IHM
 {
 	public static final String placerBateaux="Placement des bateaux : ";
 	
+	// Selectionne un bateau
+	@SuppressWarnings("resource")
 	public static int selectShip(ArrayList<String> ship_names)
 	{
-		System.out.println("Selectionner un bateau : ");
+		int choix = -1;
+		System.out.println("Selectionner un bateau : \n");
 		for(int i=0;i<ship_names.size();i++)
 		{
 			System.out.println(i+1+"-"+ship_names.get(i));
 		}
 		
-		Scanner sc = new Scanner(System.in);
-		int choix=Integer.parseInt(sc.nextLine());
+		do {
+			Scanner sc = new Scanner(System.in);
+			try {
+				choix=Integer.parseInt(sc.nextLine());
+			} catch (Exception e) {
+				System.out.println("Ce n'est pas un entier ! ");
+			}
+		} while (choix <0 || choix >5);
+		
 		return choix-1;
 	}
 	
+	// Demander ou placer le bateau
 	public static Point getCoordonnnees()
 	{
 		int x = -1;
@@ -48,9 +59,10 @@ public class IHM
 		
 		
 		return new Point(x,y);	
-		//TODO verifier inputs
 	}
 	
+	@SuppressWarnings("resource")
+	// Savoir ou tirer
 	public static Point getCoordonnneesTire(Player tireur)
 	{
 		int x = -1;
@@ -92,14 +104,10 @@ public class IHM
 			System.out.println("Vous avez tiré hors de la porté du bateau, recommencez");
 		}
 		} while (!flag);
-		
-		
-		
-		
 		return new Point(x,y);	
-		//TODO verifier inputs
 	}
 	
+	// Demander orientation du bateau
 	public static String getOrientation()
 	{
 		String input;
@@ -108,12 +116,13 @@ public class IHM
 			System.out.println("Entrer l'orientation, v pour vertical, h pour horizontal : ");
 			input=sc.nextLine();
 			if(!"v".equals(sc) && !"h".equals(sc)){
-				System.out.println("Vous avez rentrez une mauvaise orientation");
+				System.out.println("Vous avez rentre une mauvaise orientation");
 			}
 		} while (!"v".equals(input) && !"h".equals(input));
 		return input;
 	}
 	
+	// Detecter les collisions
 	public static void ShipCollision()
 	{
 		System.out.println("Un bateau se trouve deja a cet emplacement !");
