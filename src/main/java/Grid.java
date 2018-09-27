@@ -18,6 +18,7 @@ public class Grid {
 	
 	// Initialise la grille d'un joueur
 	public Grid() {
+		
 		grid = new char[10][10];
 		ocupiedPoints=new ArrayList<Point>();
 		hitPoints=new ArrayList<Point>();
@@ -30,8 +31,24 @@ public class Grid {
 	}
 	
 	// Affiche la grille du joueur
-	public void displayGrid() {
+	public void ShowGrid() {
 		updateDisplay();
+		displayGrid();
+	}
+	
+	public void ShowGrid(Ship ship) {
+		updateDisplay(ship);
+		displayGrid();
+	}
+	
+	public void ShowGridForAttacker()
+	{
+		updateDisplayForAttacker();
+		displayGrid();
+	}
+	
+	private void displayGrid()
+	{
 		for (int i = 0; i < 10; i++) {
 			if(i==0) System.out.print("\t" + (i) + "  ");
 			else System.out.print((i) + "  ");
@@ -49,11 +66,48 @@ public class Grid {
 		System.out.println();
 	}
 	
+	
+	
 	// Mets à jour les symboles de la grille
 	public void updateDisplay() {
+		for(int i=0;i<10;i++)
+		{
+			for (int j=0;j<10;j++)
+			{
+				grid[i][j]=sea;
+			}
+		}
 		for(Point p:ocupiedPoints)
 		{
 			grid[p.y][p.x]=ship;
+		}
+	}
+	
+	public void updateDisplay(Ship chosenShip) {
+		for(int i=0;i<10;i++)
+		{
+			for (int j=0;j<10;j++)
+			{
+				grid[i][j]=sea;
+			}
+		}
+		for(Point p:chosenShip.getCases())
+		{
+			grid[p.y][p.x]=ship;
+		}
+		for(Point p:chosenShip.getAffectedCases())
+		{
+			grid[p.y][p.x]=hit;
+		}
+	}
+	
+	public void updateDisplayForAttacker() {
+		for(int i=0;i<10;i++)
+		{
+			for (int j=0;j<10;j++)
+			{
+				grid[i][j]=sea;
+			}
 		}
 		for(Point p:hitPoints)
 		{
@@ -72,6 +126,11 @@ public class Grid {
 		for(Point p:pointsBateau)
 		{
 			for(Point pb:ocupiedPoints)
+			{
+				if(p.equals(pb))
+					return false;
+			}
+			for(Point pb:hitPoints)
 			{
 				if(p.equals(pb))
 					return false;
@@ -99,14 +158,20 @@ public class Grid {
 		
 	}
 	
+	private void moveShip(Ship ship)
+	{
+		
+	}
+	
 	// Placement des bateaux
 	public void placeShip(Ship ship,Boolean flag)
 	{
 		IHM.PlacementBateau(ship.getName());
 		Boolean drap;
 		@SuppressWarnings("unchecked")
-		ArrayList<Point> caseTemp = (ArrayList<Point>)ship.getCases().clone();
-		
+		ArrayList<Point> caseTemp = (ArrayList<Point>)ship.getCases();
+		if(caseTemp.size()!=0)
+			ocupiedPoints.removeAll(caseTemp);
 		do
 		{
 			drap = false;
@@ -141,6 +206,7 @@ public class Grid {
 				drap = true;
 		}
 		while(drap);
+		System.out.println("bateaux places");
 	}
 	
 	public void setHitPoints(Point point) {
@@ -148,6 +214,17 @@ public class Grid {
 	}
 	
 	public void setMissedPoints(Point point) {
-		this.hitPoints.add(point);
+		this.missedPoints.add(point);
+	}
+	
+	public void removeShipPoints(ArrayList<Point> list)
+	{
+		ocupiedPoints.removeAll(list);
+		hitPoints.removeAll(list);
+	}
+	
+	public ArrayList<Point> getOcupiedPoints()
+	{
+		return ocupiedPoints;
 	}
 }

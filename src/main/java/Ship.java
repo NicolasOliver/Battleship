@@ -62,15 +62,16 @@ public class Ship {
 	}
 
 	// Pour gerer quand un bateau est touche
-	public void hit(Point point) {
+	public Boolean hit(Point point) {
+		cases.remove(point);
     	affectedCases.add(point); // Pour ne pas toucher 2 fois de suite au meme endroit
         life--;
         System.out.println("Touche ! C'etait un " + name);
         if(life == 0) {
             System.out.println("Qui est d'ailleurs coule !");
-            return;
+            return true;
         }
-        System.out.println();
+        return false;
     }
 	
 	//Definir les cases occuppees par le bateau

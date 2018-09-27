@@ -115,7 +115,7 @@ public class IHM
 			Scanner sc=new Scanner(System.in);
 			System.out.println("Entrer l'orientation, v pour vertical, h pour horizontal : ");
 			input=sc.nextLine();
-			if(!"v".equals(sc) && !"h".equals(sc)){
+			if(!"v".equals(input) && !"h".equals(input)){
 				System.out.println("Vous avez rentre une mauvaise orientation");
 			}
 		} while (!"v".equals(input) && !"h".equals(input));

@@ -26,34 +26,70 @@ public class Player {
 	// Methode pour placer les bateaux
 	public void placeShips() 
 	{
-		Point point = new Point(0,0);
-		Grid grid = new Grid();
-		grid.displayGrid();
+		/*Point point = new Point(0,0);
+		grid.ShowGrid();
+		
 		Ship ship=new PorteAvion("v", point);
 		grid.placeShip(ship, false);
 		ships.add(ship);
-		grid.displayGrid();
+		grid.ShowGrid();
 		
 		
 		ship=new Croiseur("v", point);
 		grid.placeShip(ship, false);
 		ships.add(ship);
-		grid.displayGrid();
+		grid.ShowGrid();
 	
 		ship=new ContreTorpilleur("v", point);
 		grid.placeShip(ship, false);
 		ships.add(ship);
-		grid.displayGrid();
+		grid.ShowGrid();
 		
 		ship=new SousMarin("v", point);
 		grid.placeShip(ship, false);
 		ships.add(ship);
-		grid.displayGrid();
+		grid.ShowGrid();
 		
 		ship=new Torpilleur("v", point);
 		grid.placeShip(ship, false);
 		ships.add(ship);
-		grid.displayGrid();
+		grid.ShowGrid();;*/
+		grid.ShowGrid();
+		
+		Point point = new Point(0,0);
+		Ship ship=new PorteAvion("v", point);
+		ship.setCases(point,"v");
+		grid.getOcupiedPoints().addAll(ship.getCases());
+		ships.add(ship);
+		grid.ShowGrid();
+		
+	    point = new Point(1,1);
+		ship=new Croiseur("v", point);
+		ship.setCases(point,"v");
+		grid.getOcupiedPoints().addAll(ship.getCases());
+		ships.add(ship);
+		grid.ShowGrid();
+	
+		 point = new Point(2,2);
+		ship=new ContreTorpilleur("v", point);
+		ship.setCases(point,"v");
+		grid.getOcupiedPoints().addAll(ship.getCases());
+		ships.add(ship);
+		grid.ShowGrid();
+		
+		point = new Point(3,3);
+		ship=new SousMarin("v", point);
+		ship.setCases(point,"v");
+		grid.getOcupiedPoints().addAll(ship.getCases());
+		ships.add(ship);
+		grid.ShowGrid();
+		
+		 point = new Point(4,4);
+		ship=new Torpilleur("v", point);
+		ship.setCases(point,"v");
+		grid.getOcupiedPoints().addAll(ship.getCases());
+		ships.add(ship);
+		grid.ShowGrid();
 		
 		System.out.println("Les bateaux ont ete places");
 	}
@@ -62,18 +98,21 @@ public class Player {
 	@SuppressWarnings("unused")
 	public Boolean shot(Point point, Player tireur, Player cible){
 		for (int i = 0;i<cible.getShips().size();i++){
-			for (int j = 0;j<cible.getShips().get(i).getCases().size();j++){
-				if (point.equals(cible.getShips().get(i).getCases().get(j))){
-					cible.getShips().get(i).affectedCases.add(point); 
-					cible.getShips().get(i).getCases().remove(j);
-					cible.getShips().get(i).setLife(cible.getShips().get(i).getLife()-1);
-					System.out.println("Vous avez touché votre cible !\n");
+			Ship cibleShip=cible.getShips().get(i);
+			for (int j = 0;j<cibleShip.getCases().size();j++)
+			{	
+				if (point.equals(cibleShip.getCases().get(j)))
+				{
 					cible.getGrid().setHitPoints(point);
-					if(cible.getShips().get(i).getLife()==0){
+					if(cibleShip.hit(point))
+					{
+						cible.getGrid().removeShipPoints(cibleShip.getCases());
 						cible.getShips().remove(i);
 					}
 					return true;
-				}  else {
+				} 
+				else 
+				{
 					System.out.println("Vous avez rate votre cible..\n");
 					cible.getGrid().setMissedPoints(point);
 					placeShipsAtfterShoot(tireur.getShipChosen());
@@ -88,6 +127,7 @@ public class Player {
 	public void placeShipsAtfterShoot(Ship bateau) 
 	{
 		System.out.println("Vous pouvez replacer votre bateau");
+		grid.ShowGrid();
 		grid.placeShip(bateau,true);
 		System.out.println("Le bateaux a ete replace");
 	}
@@ -101,8 +141,9 @@ public class Player {
 			ship_names.add(ships.get(i).getName());
 		}
 		int i=IHM.selectShip(ship_names);
-		//TODO Verifier input
-		return ships.get(i);
+		Ship ship=ships.get(i);
+		grid.ShowGrid(ship);
+		return ship;
 	}
 
 	/** Getters and setters */

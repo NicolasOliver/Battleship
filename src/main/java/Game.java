@@ -48,9 +48,10 @@ public class Game {
     public void placementBateau () {
     	System.out.println("\nLe joueur 1 doit placer ses bateaux : \n");
     	joueur1.placeShips();
+    	
     	System.out.println("\nLe joueur 2 doit placer ses bateaux : \n");
     	joueur2.placeShips();
-    	
+    
     	batailleNavale();
     }
     
@@ -59,11 +60,12 @@ public class Game {
     	while (!joueur1.getShips().isEmpty() && !joueur2.getShips().isEmpty()){
     		System.out.println("\nAu tour du joueur 1 : \n");
     		System.out.println("Voici votre grille :\n");
-    		joueur1.getGrid().displayGrid();
+    		Grid grid=joueur1.getGrid();
+    		grid.ShowGrid();
     		tireJoueur(joueur1, joueur2);
     		System.out.println("\nAu tour du joueur 2 : \n");
     		System.out.println("Voici votre grille :\n");
-    		joueur2.getGrid().displayGrid();
+    		joueur2.getGrid().ShowGrid();
     		tireJoueur(joueur2, joueur1);
     	}
     	
@@ -80,6 +82,8 @@ public class Game {
 		do {
 			tireur.setShipChosen(tireur.selectShip());
 			System.out.println("La portée du "+tireur.getShipChosen().getName()+" est de : "+tireur.getShipChosen().getFiringRange());
+			System.out.println("Grille Adverse");
+			cible.getGrid().ShowGridForAttacker();
 			Point point = IHM.getCoordonnneesTire(tireur);
 			succes = joueur1.shot(point,tireur, cible);
 		} while (succes);
