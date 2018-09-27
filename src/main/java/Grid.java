@@ -84,11 +84,16 @@ public class Grid {
 		
 	}
 	
-	public void placeShip(Ship ship)
+	public void placeShip(Ship ship,Boolean flag)
 	{
 		IHM.PlacementBateau(ship.getName());
+		Boolean drap;
+		@SuppressWarnings("unchecked")
+		ArrayList<Point> caseTemp = (ArrayList<Point>)ship.getCases().clone();
+		
 		do
 		{
+			drap = false;
 			Point point=IHM.getCoordonnnees();
 			String orientation=IHM.getOrientation();
 			if(checkSize(ship,point,orientation))
@@ -96,16 +101,30 @@ public class Grid {
 				ship.setCases(point, orientation);
 				if(checkCollisions(ship))
 				{
-					this.ocupiedPoints.addAll(ship.getCases());
-					return;
+					if (flag) {
+						for (int i = 0;i<ship.getCases().size();i++){
+							if(ship.getCases().get(i).x>caseTemp.get(i).x+2 || ship.getCases().get(i).y>caseTemp.get(i).y+2){
+								drap = true;
+								System.out.println("Vous vous etes deplace de plus de 2 cases ou dans la mauvaise direction !");
+								break;
+							} 
+						} 
+					} 
+					if (!drap){
+						this.ocupiedPoints.addAll(ship.getCases());
+						return;
+					}
+					
 				}
 				else
 					IHM.ShipCollision();
+					drap = true;
 			}
 			else
 				IHM.WallCollision();
+				drap = true;
 		}
-		while(true);
+		while(drap);
 	}
 	
 	

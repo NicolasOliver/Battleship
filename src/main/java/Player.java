@@ -29,28 +29,28 @@ public class Player {
 		Grid grid = new Grid();
 		grid.displayGrid();
 		Ship ship=new PorteAvion("v", point);
-		grid.placeShip(ship);
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.displayGrid();
 		
 		
 		ship=new Croiseur("v", point);
-		grid.placeShip(ship);
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.displayGrid();
 	
 		ship=new ContreTorpilleur("v", point);
-		grid.placeShip(ship);
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.displayGrid();
 		
 		ship=new SousMarin("v", point);
-		grid.placeShip(ship);
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.displayGrid();
 		
 		ship=new Torpilleur("v", point);
-		grid.placeShip(ship);
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.displayGrid();
 		
@@ -61,6 +61,36 @@ public class Player {
 	{
 		Ship s=selectShip();
 		
+	}
+	
+	public Boolean shot(Point point, Player tireur, Player cible){
+		Boolean flag = false;
+		for (int i = 0;i<cible.getShips().size();i++){
+			for (int j = 0;j<cible.getShips().get(i).getCases().size();j++){
+				if (point.equals(cible.getShips().get(i).getCases().get(j))){
+					cible.getShips().get(i).affectedCases.add(point); 
+					cible.getShips().get(i).getCases().remove(j);
+					cible.getShips().get(i).setLife(cible.getShips().get(i).getLife()-1);
+					System.out.println("Vous avez touché votre cible");
+					if(cible.getShips().get(i).getLife()==0){
+						cible.getShips().remove(i);
+					}
+					return true;
+				}  else {
+					System.out.println("Vous avez raté votre cible");
+					placeShipsAtfterShoot(tireur.getShipChosen());
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public void placeShipsAtfterShoot(Ship bateau) 
+	{
+		System.out.println("Vous pouvez replacé votre bateau");
+		grid.placeShip(bateau,true);
+		System.out.println("Le bateaux a ete replacé");
 	}
 	
 	public Ship selectShip()

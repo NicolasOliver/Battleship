@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.util.Scanner;
 
 // Defini le lancement et l'arret d'une partie 
@@ -56,9 +57,9 @@ public class Game {
     public void batailleNavale(){
     	while (!joueur1.getShips().isEmpty() && !joueur2.getShips().isEmpty()){
     		System.out.println("Au tour du joueur 1 : ");
-    		tireJoueur(joueur1);
+    		tireJoueur(joueur1, joueur2);
     		System.out.println("Au tour du joueur 2 : ");
-    		tireJoueur(joueur2);
+    		tireJoueur(joueur2, joueur1);
     	}
     	
     	if (joueur1.getShips().isEmpty()){
@@ -69,14 +70,14 @@ public class Game {
     }
     
     // Classe qui gère les tirs du joueur
-    public void tireJoueur(Player player){
+    public void tireJoueur(Player tireur, Player cible){
     	Boolean succes = true;
-		player.setShipChosen(player.selectShip());
-		/*while (succes) {
-			succes = joueur1.shot(x,y);
-			System.out.println("Vous avez touch� votre cible");
-			System.out.println("Vous avez rat� votre cible")
-			} */
+		do {
+			tireur.setShipChosen(tireur.selectShip());
+			System.out.println("La portée du "+tireur.getShipChosen().getName()+" est de :"+tireur.getShipChosen().getFiringRange());
+			Point point = IHM.getCoordonnneesTire(tireur);
+			succes = joueur1.shot(point,tireur, cible);
+		} while (succes);
     }
     public static void main(String[] args)
     {

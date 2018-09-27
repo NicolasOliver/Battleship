@@ -13,6 +13,7 @@ public class Ship {
 	protected ArrayList<Point> affectedCases; // Ensemble des points endommages du bateau;
 	protected Point begin; // Premiere case du bateau
 	
+	
 	// Constructeur d'un bateau comprenant son nom, sa taille, son portee de tir et son orientation
 	public Ship(){}
 	
@@ -24,6 +25,44 @@ public class Ship {
 	public String getOrientation() { return orientation; }
 	public Point getBegin() { return begin; }
 	
+	
+	
+	public ArrayList<Point> getAffectedCases() {
+		return affectedCases;
+	}
+
+	public void setAffectedCases(ArrayList<Point> affectedCases) {
+		this.affectedCases = affectedCases;
+	}
+
+	public void setFiringRange(int firingRange) {
+		this.firingRange = firingRange;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
+	}
+
+	public void setOrientation(String orientation) {
+		this.orientation = orientation;
+	}
+
+	public void setCases(ArrayList<Point> cases) {
+		this.cases = cases;
+	}
+
+	public void setBegin(Point begin) {
+		this.begin = begin;
+	}
+
 	// Pour gerer quand un bateau est touche
 	public void hit(Point point) {
     	affectedCases.add(point); // Pour ne pas toucher 2 fois de suite au meme endroit
