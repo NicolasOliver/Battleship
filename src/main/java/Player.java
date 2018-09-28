@@ -1,5 +1,6 @@
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player {
 	
@@ -26,68 +27,32 @@ public class Player {
 	// Methode pour placer les bateaux
 	public void placeShips() 
 	{
-		/*Point point = new Point(0,0);
-		grid.ShowGrid();
-		
-		Ship ship=new PorteAvion("v", point);
-		grid.placeShip(ship, false);
-		ships.add(ship);
-		grid.ShowGrid();
-		
-		
-		ship=new Croiseur("v", point);
-		grid.placeShip(ship, false);
-		ships.add(ship);
-		grid.ShowGrid();
-	
-		ship=new ContreTorpilleur("v", point);
-		grid.placeShip(ship, false);
-		ships.add(ship);
-		grid.ShowGrid();
-		
-		ship=new SousMarin("v", point);
-		grid.placeShip(ship, false);
-		ships.add(ship);
-		grid.ShowGrid();
-		
-		ship=new Torpilleur("v", point);
-		grid.placeShip(ship, false);
-		ships.add(ship);
-		grid.ShowGrid();;*/
-		grid.ShowGrid();
-		
 		Point point = new Point(0,0);
+		grid.ShowGrid();
+		
 		Ship ship=new PorteAvion("v", point);
-		ship.setCases(point,"v");
-		grid.getOcupiedPoints().addAll(ship.getCases());
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.ShowGrid();
 		
-	    point = new Point(1,1);
+		
 		ship=new Croiseur("v", point);
-		ship.setCases(point,"v");
-		grid.getOcupiedPoints().addAll(ship.getCases());
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.ShowGrid();
 	
-		 point = new Point(2,2);
 		ship=new ContreTorpilleur("v", point);
-		ship.setCases(point,"v");
-		grid.getOcupiedPoints().addAll(ship.getCases());
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.ShowGrid();
 		
-		point = new Point(3,3);
 		ship=new SousMarin("v", point);
-		ship.setCases(point,"v");
-		grid.getOcupiedPoints().addAll(ship.getCases());
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.ShowGrid();
 		
-		 point = new Point(4,4);
 		ship=new Torpilleur("v", point);
-		ship.setCases(point,"v");
-		grid.getOcupiedPoints().addAll(ship.getCases());
+		grid.placeShip(ship, false);
 		ships.add(ship);
 		grid.ShowGrid();
 		
@@ -124,12 +89,24 @@ public class Player {
 	}
 	
 	// Permet de replacer un bateau
+	@SuppressWarnings("resource")
 	public void placeShipsAtfterShoot(Ship bateau) 
 	{
-		System.out.println("Vous pouvez replacer votre bateau");
-		grid.ShowGrid();
-		grid.placeShip(bateau,true);
-		System.out.println("Le bateaux a ete replace");
+		String reponse;
+		Scanner sc = new Scanner(System.in);
+		do {
+			System.out.printf("Voulez-vous replacer votre bateau  ? (o/n) :  ");
+			reponse = sc.nextLine();
+		} while (!"o".equals(reponse.toString()) && !"O".equals(reponse.toString())
+				&& !"n".equals(reponse.toString()) && !"N".equals(reponse.toString()));
+		if("n".equals(reponse.toString()) || "N".equals(reponse.toString())) {
+			System.out.println("Le bateau n'a pas ete replace\n");
+		}
+		else {
+			grid.ShowGrid();
+			grid.placeShip(bateau,true);
+			System.out.println("Le bateaux a ete replace\n");
+		}
 	}
 	
 	// Choisir un bateau pour tirer

@@ -158,17 +158,11 @@ public class Grid {
 		
 	}
 	
-	private void moveShip(Ship ship)
-	{
-		
-	}
-	
 	// Placement des bateaux
 	public void placeShip(Ship ship,Boolean flag)
 	{
 		IHM.PlacementBateau(ship.getName());
 		Boolean drap;
-		@SuppressWarnings("unchecked")
 		ArrayList<Point> caseTemp = (ArrayList<Point>)ship.getCases();
 		if(caseTemp.size()!=0)
 			ocupiedPoints.removeAll(caseTemp);
